@@ -1,0 +1,63 @@
+// Add your primary color variable or use a default one from Angular Material
+$primary: blue;
+
+// login.component.scss
+mat-card {
+    max-width: 400px;
+    margin: 100px auto;
+  
+    mat-card-header {
+      display: flex;
+      justify-content: center;
+      mat-card-title {
+        font-size: 24px;
+      }
+    }
+  
+    mat-card-content {
+
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+  
+        mat-form-field {
+          width: 100%;
+  
+          input {
+            font-size: 16px;
+          }
+        }
+  
+        button {
+          margin-top: 24px;
+        }
+      }
+  
+      a {
+        display: block;
+        text-align: right;
+        margin-top: 8px;
+        color: mat-color($primary);
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+  
+  // Customizes the Angular Material form field globally if needed
+  .mat-form-field {
+    &.mat-focused .mat-form-field-ripple {
+      background-color: mat-color($primary);
+    }
+  }
+  
+
+  .success-snackbar {
+    background-color: #4caf50; /* Green */
+    color: #fff; /* White */
+  }
+  
+
+  
