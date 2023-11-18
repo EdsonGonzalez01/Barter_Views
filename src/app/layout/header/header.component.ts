@@ -35,7 +35,7 @@ export class HeaderComponent {
             this.tokenService.save(response.token);
             this.routerService.navigate([''])
           },
-          error: (err) => {
+          error: (err: any) => {
             alert('No se pudo iniciar sesion')
             console.log(err);
             

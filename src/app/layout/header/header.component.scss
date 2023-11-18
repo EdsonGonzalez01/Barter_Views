@@ -1,13 +1,38 @@
+
+.mat-toolbar-row, .mat-toolbar-single-row {
+    display: flex;
+    box-sizing: border-box;
+    padding: 0 16px;
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    white-space: nowrap;
+    height: var(--mat-toolbar-standard-height);
+    background-color: rgb(14, 28, 54);
+    font-size: 30px;
+    color: white;
+    font-family:Tahoma, Geneva, Verdana, sans-serif;
+
+    span{
+        color: rgb(215, 249, 255);
+        
+    }
+    a{
+        color: rgb(215, 249, 255);
+    }
+
+}
+
 header {
     height: 80px;
-    background-color: blue;
+    background-color: rgb(14, 28, 54);
     padding: 0 10px;
 
     span {
         font-size: 32px;
         font-weight: bold;
         line-height: 80px;
-        color: white;
+        color: rgb(255, 255, 255);
     }
 
     ul {
