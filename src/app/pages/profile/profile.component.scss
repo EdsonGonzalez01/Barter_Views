@@ -1,0 +1,62 @@
+mat-card {
+    max-width: 400px;
+    margin: 20px auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+    mat-card-content{
+        margin-top: 10px;
+    }
+  
+    header {
+      position: relative;
+  
+      mat-card-title,
+      mat-card-subtitle {
+        display: flex;
+        align-items: center;
+  
+        input {
+          flex-grow: 1;
+          margin-left: 10px;
+        }
+      }
+  
+      button {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+      }
+    }
+  
+    .content {
+      padding: 15px;
+  
+      div {
+        margin-bottom: 10px;
+  
+        label {
+          font-weight: bold;
+        }
+  
+        input {
+          width: 100%;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          padding: 5px;
+          margin-top: 5px;
+  
+          &:focus {
+            outline: none;
+            border-color: #00796b;
+          }
+        }
+  
+        span {
+          display: inline-block;
+          margin-right: 5px;
+        }
+      }
+    }
+}
+
+  
