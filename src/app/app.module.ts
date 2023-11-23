@@ -19,6 +19,7 @@ import { LoginStatusDirective } from './shared/directives/login-status.directive
 import { BartersComponent } from './pages/barters/barters.component';
 import { BartersListComponent } from './pages/barters/barters-list/barters-list.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { ChatComponent } from './chat/chat.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { ProfileComponent } from './pages/profile/profile.component';
     LoginStatusDirective,
     BartersComponent,
     BartersListComponent,
-    ProfileComponent
+    ProfileComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,
