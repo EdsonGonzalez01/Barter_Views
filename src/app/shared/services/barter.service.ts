@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Barter } from '../interfaces/barter';
+import { File } from '../interfaces/file';
+import { environment } from 'src/environments/environment';
 
 
 @Injectable({
@@ -14,5 +16,28 @@ export class BarterService {
 
   createBarter(barterData: Barter): Observable<Barter> {
     return this.http.post<Barter>(this.apiUrl, barterData);
+  }
+
+  upload(id: string, input: HTMLInputElement): Observable<File> {
+    const formData = new FormData();
+    formData.append('file', input.files![0]);
+  
+    const url = `${environment.apiUrl}barter/${id}/upload`;
+    return this.http.post<File>(url, formData);
+  }
+
+  getBarters(): Observable<Barter[]>{
+    const url = `${environment.apiUrl}barter`;
+    return this.http.get<Barter[]>(url);
+  }
+
+  getFiles(barterId: String):Observable<File[]>{
+    const url = `${environment.apiUrl}barter/${barterId}/upload`;
+    return this.http.get<File[]>(url);
+  }
+
+  getImageUrl(filename: string): string {
+    console.log(`${environment.apiUrl}assets/${filename}`)
+    return `${environment.apiUrl}assets/${filename}`;
   }
 }
