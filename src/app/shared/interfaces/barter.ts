@@ -8,5 +8,6 @@ export interface Barter {
     files?: File[];
     imageUrl?: string;
     date: Date;
+    offerer: string;
   }
   

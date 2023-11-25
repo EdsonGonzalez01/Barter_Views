@@ -70,7 +70,7 @@ export class LoginComponent implements OnInit {
       },
       error: (err) => {
         alert('No se pudo iniciar sesion')
-        console.log(err);
+        //console.log(err);
       }
     })
   }

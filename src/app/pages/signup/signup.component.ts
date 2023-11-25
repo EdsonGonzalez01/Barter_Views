@@ -81,7 +81,7 @@ export class SignupComponent {
         this.router.navigate(['login'], { queryParams: { success: true } });
       },
       error: (err) => {
-        console.log(err);
+        //console.log(err);
       }
     });
   }

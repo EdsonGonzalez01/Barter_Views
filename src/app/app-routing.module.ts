@@ -19,7 +19,6 @@ const routes: Routes = [
   ] },
   { path: 'profile', component: ProfileComponent, canActivate: [authGuard]},
   { path: 'signup', component: SignupComponent, canActivate: [unauthGuard]},
-
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

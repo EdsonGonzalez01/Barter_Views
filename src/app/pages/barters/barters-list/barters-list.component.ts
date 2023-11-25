@@ -10,10 +10,16 @@ import { BarterService } from 'src/app/shared/services/barter.service';
 export class BartersListComponent implements OnInit {
   imageUrl: string = 'https://www.prensalibre.com/wp-content/uploads/2018/12/afa2268e-f4dc-411b-b150-1d850801b2a4.jpg?quality=52&w=1200';
   items: Barter[] = [];
+  allBartersShown: boolean = true;
 
   constructor(private barterService: BarterService) { }
 
   ngOnInit() {
+    this.showAllBarters();
+  }
+
+  showAllBarters(){
+    this.allBartersShown = true;
     this.barterService.getBarters().subscribe((barters: Barter[]) => {
       // Fetch files for each barter
       this.items = barters.map(barter => {
@@ -29,5 +35,18 @@ export class BartersListComponent implements OnInit {
   // Helper function to get the image URL for a file
   getImageUrl(filename: string): string {
     return this.barterService.getImageUrl(filename);
+  }
+
+  showMyBarters(){
+    this.allBartersShown = false
+    this.barterService.getMyBarters().subscribe((barters: Barter[])=> {
+      this.items = barters.map(barter => {
+        this.barterService.getFiles(barter._id).subscribe(files => {
+          // Update the barter with the fetched files
+          barter.files = files;
+        });
+        return barter;
+      });
+    })
   }
 }
