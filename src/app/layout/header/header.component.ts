@@ -37,7 +37,7 @@ export class HeaderComponent {
           },
           error: (err) => {
             alert('No se pudo iniciar sesion')
-            console.log(err);
+            //console.log(err);
             
           }
         });
@@ -48,7 +48,7 @@ export class HeaderComponent {
 
   logout(){
     this.tokenService.remove();
-    console.log("Si se deslogueo");
+    //console.log("Si se deslogueo");
     this.loginStatus = false;
     this.routerService.navigate(['login']);
   }

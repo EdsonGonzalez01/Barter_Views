@@ -59,9 +59,7 @@ export class LoginComponent implements OnInit {
 
 
   onSubmit() {
-    console.log(this.form.controls);
     const url: string = `${environment.apiUrl}login`;
-    console.log(url);
     this.loginService.login({
       email: this.form.controls['email'].value,
       password: this.form.controls['password'].value
@@ -72,7 +70,7 @@ export class LoginComponent implements OnInit {
       },
       error: (err) => {
         alert('No se pudo iniciar sesion')
-        console.log(err);
+        //console.log(err);
       }
     })
   }

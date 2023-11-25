@@ -17,9 +17,7 @@ export class SignupComponent {
 
   constructor(
     formBuilder: FormBuilder, 
-    private httpClient: HttpClient,
     private signUpService:SignupService,
-    private loginService:LoginService,
     private router: Router
     ) {
     this.form = formBuilder.group({
@@ -78,13 +76,12 @@ export class SignupComponent {
       lastName: this.form.controls['lastName'].value,
       email: this.form.controls['email'].value,
       password: this.form.controls['password'].value,
-      location: this.form.controls['confirm'].value,
     }).subscribe({
       next: (response: User) => {
         this.router.navigate(['login'], { queryParams: { success: true } });
       },
       error: (err) => {
-        console.log(err);
+        //console.log(err);
       }
     });
   }
