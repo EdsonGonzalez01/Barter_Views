@@ -1,0 +1,50 @@
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Barter } from '../interfaces/barter';
+import { File } from '../interfaces/file';
+import { environment } from 'src/environments/environment';
+import { TokenService } from './token.service';
+
+
+@Injectable({
+  providedIn: 'root',
+})
+export class BarterService {
+  private apiUrl = 'http://localhost:3000/barter';
+
+  constructor(private http: HttpClient, private tokenService: TokenService) {}
+
+  createBarter(barterData: Barter): Observable<Barter> {
+    return this.http.post<Barter>(this.apiUrl, barterData);
+  }
+
+  upload(id: string, input: HTMLInputElement): Observable<File> {
+    const formData = new FormData();
+    formData.append('file', input.files![0]);
+  
+    const url = `${environment.apiUrl}barter/${id}/upload`;
+    return this.http.post<File>(url, formData);
+  }
+
+  getBarters(): Observable<Barter[]>{
+    const url = `${environment.apiUrl}barter`;
+    return this.http.get<Barter[]>(url);
+  }
+
+  getMyBarters(): Observable<Barter[]>{
+    const url = `${environment.apiUrl}barter/mybarters`;
+    const authToken = this.tokenService.get();
+    const headers = new HttpHeaders().set('Authorization', `${authToken}`);
+    return this.http.get<Barter[]>(url, {headers});
+  }
+
+  getFiles(barterId: String):Observable<File[]>{
+    const url = `${environment.apiUrl}barter/${barterId}/upload`;
+    return this.http.get<File[]>(url);
+  }
+
+  getImageUrl(filename: string): string {
+    return `${environment.apiUrl}assets/${filename}`;
+  }
+}

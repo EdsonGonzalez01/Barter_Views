@@ -1,0 +1,22 @@
+<div class="container">
+  <form [formGroup]="barterForm" class="example-form" (submit)="onSubmit()">
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Title" formControlName="title">
+    </mat-form-field>
+  
+    <mat-form-field class="example-full-width">
+      <textarea matInput placeholder="Description" formControlName="description"></textarea>
+    </mat-form-field>
+  
+    <mat-form-field class="example-full-width">
+      <input matInput formControlName="file" type="text" [value]="nameFileSelected" readonly>
+      <mat-icon matSuffix (click)="fileInput.click()">attach_file</mat-icon>
+      <!-- <mat-hint>{{ nameFileSelected }}</mat-hint> -->
+    </mat-form-field>
+    <input #fileInput formControlName="file" type="file" (change)="onFileSelected($event)">
+  
+    <!-- You can add more fields as needed -->
+    <button mat-raised-button color="primary" type="submit">Create Barter</button>
+  </form>
+  
+</div>
