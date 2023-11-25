@@ -1,1 +1,16 @@
-<p>chat works!</p>
+<div class="container">
+    <div class="messages"> 
+        <div class="message" *ngFor="let item of messages" [ngClass]="{'owned': item.owned}">
+            <strong>{{item.username}}</strong>
+            <p>{{item.message}}</p>
+        </div>
+    </div>
+    <form (submit)="enviarMensaje()" >
+        <mat-form-field>
+            <input name= "message" type="text" matInput [(ngModel)]="message">
+        </mat-form-field>
+        <button mat-mini-fab color="primary">
+            <mat-icon>send</mat-icon>
+        </button>
+    </form>
+</div>
