@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { Barter } from 'src/app/shared/interfaces/barter';
 import { User } from 'src/app/shared/interfaces/user';
 import { BarterService } from 'src/app/shared/services/barter.service';
@@ -23,7 +24,8 @@ export class BartersCreateComponent {
     private formBuilder: FormBuilder, 
     private barterService: BarterService, 
     private snackBar: MatSnackBar, 
-    private userService: UserService
+    private userService: UserService,
+    private routerService: Router
   ) {
     this.isCreateBarterRouteEmitter.emit(true);
 
@@ -51,22 +53,21 @@ export class BartersCreateComponent {
   }
   
   onSubmit() {
-    if (this.barterForm.valid) {
-      const formData: Barter = this.barterForm.value;
-      this.barterService.createBarter(formData).subscribe(response => {
-        //console.log('Barter created successfully', response);
-        if(this.fileSelected){
-          this.barterService.upload(response._id, this.fileSelected).subscribe({
-            next: () => {
-              this.showSnack("File uploaded successfully", "Success");
-            },
-            error: () => {
-              this.showSnack("File not supported", "Error");
-            }
-
-          });
-        }
-      });
+    try {
+      if (this.barterForm.valid) {
+        const formData: Barter = this.barterForm.value;
+        this.barterService.createBarter(formData).subscribe(response => {
+          //console.log('Barter created successfully', response);
+          if(this.fileSelected){
+            this.barterService.upload(response._id, this.fileSelected).subscribe({
+            });
+          }
+        });
+      }
+      this.showSnack("Barter Created Successfully", "Success");
+      this.routerService.navigate(['barters']);
+    } catch (error) {
+      this.showSnack("There was an error please try again later", "Error");
     }
   }
 

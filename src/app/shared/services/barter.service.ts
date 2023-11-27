@@ -11,20 +11,20 @@ import { TokenService } from './token.service';
   providedIn: 'root',
 })
 export class BarterService {
-  private apiUrl = 'http://localhost:3000/barter';
 
   constructor(private http: HttpClient, private tokenService: TokenService) {}
 
   createBarter(barterData: Barter): Observable<Barter> {
-    return this.http.post<Barter>(this.apiUrl, barterData);
+    return this.http.post<Barter>(`${environment.apiUrl}barter`, barterData);
   }
 
   upload(id: string, input: HTMLInputElement): Observable<File> {
     const formData = new FormData();
     formData.append('file', input.files![0]);
-  
     const url = `${environment.apiUrl}barter/${id}/upload`;
-    return this.http.post<File>(url, formData);
+    const authToken = this.tokenService.get();
+    const headers = new HttpHeaders().set('Authorization', `${authToken}`);
+    return this.http.post<File>(url, formData, {headers});
   }
 
   getBarters(): Observable<Barter[]>{

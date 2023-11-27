@@ -11,6 +11,7 @@ export class BartersListComponent implements OnInit {
   imageUrl: string = 'https://www.prensalibre.com/wp-content/uploads/2018/12/afa2268e-f4dc-411b-b150-1d850801b2a4.jpg?quality=52&w=1200';
   items: Barter[] = [];
   allBartersShown: boolean = true;
+  selectedBarter: Barter | null = null;
 
   constructor(private barterService: BarterService) { }
 
@@ -18,13 +19,24 @@ export class BartersListComponent implements OnInit {
     this.showAllBarters();
   }
 
+  showDetails(barter: Barter) {
+    this.selectedBarter = barter;
+  }
+
+  handleClose() {
+    this.selectedBarter = null;
+  }
+  
   showAllBarters(){
     this.allBartersShown = true;
     this.barterService.getBarters().subscribe((barters: Barter[]) => {
+      console.log("Barters: ", barters);
+      
       // Fetch files for each barter
       this.items = barters.map(barter => {
         this.barterService.getFiles(barter._id).subscribe(files => {
           // Update the barter with the fetched files
+          console.log("files: ", files);
           barter.files = files;
         });
         return barter;

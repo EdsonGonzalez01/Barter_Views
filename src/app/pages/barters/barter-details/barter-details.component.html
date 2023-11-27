@@ -1,0 +1,21 @@
+<div class="barter-details-modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>{{ barter.title }}</h2>
+            <button class="close-btn" (click)="closeDetails()">&times;</button>
+        </div>
+        <div class="modal-body">
+            <img *ngIf="barter.files && barter.files.length > 0"
+                 [src]="getImageUrl(barter.files[0].filename)"
+                 alt="{{ barter.title }}" class="barter-image">
+            <h3 style="font-weight: bold;">Description:</h3>
+            <p>{{ barter.description }}</p>
+            <h3 style="font-weight: bold;">Offerer:</h3>
+            <div class="offerer-details">
+                <img [src]="offererImgUrl" alt="Offerer" class="offerer-img">
+                <p>{{ offerer.name }}</p>
+            </div>
+            <!-- Additional details here -->
+        </div>
+    </div>
+</div>
