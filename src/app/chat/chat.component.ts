@@ -16,13 +16,13 @@ interface Message{
 })
 export class ChatComponent implements OnInit{
   
-  socket : Socket
+  socket : Socket;
   nombre: string = 'topi';
   message: string = '';
-  messages: Message[] = []
+  messages: Message[] = [];
   
   constructor(){
-    this.socket = io(environment.apiUrl)
+    this.socket = io(environment.apiUrl);
   }
 
   ngOnInit(): void {
@@ -31,6 +31,7 @@ export class ChatComponent implements OnInit{
       });
 
       this.socket.on('messageReceived', (message: Message) =>{
+        console.log('Mensaje recibido en el cliente:', message);
         this.messages.push(message);
       })
   }
@@ -43,13 +44,11 @@ export class ChatComponent implements OnInit{
       owned:true
     });
 
-    this.socket.emit('sendMessage', {
+    this.socket.emit('messageSent', {
       message: this.message,
-      name: this.nombre
+      username: this.nombre
     });
     
   }
-
-
 
 }
