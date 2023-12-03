@@ -4,6 +4,10 @@
   <button mat-raised-button color="primary" *ngIf="allBartersShown" (click)="showMyBarters()">My barters</button>
 </div>
 
+<div *ngIf="items.length === 0" class="no-barters-message">
+  There are no barters to display
+</div>
+
 <div class="card-matrix">
     <mat-card *ngFor="let item of items" class="mat-card">
       <mat-card-header>
@@ -18,9 +22,15 @@
       </mat-card-content>
       <!-- You can add additional actions or customize the content as needed -->
       <mat-card-actions>
-        <button mat-button>More Details</button>
+        <button mat-button (click)="showDetails(item)">More Details</button>
         <button mat-button>Show Interest</button>
       </mat-card-actions>
     </mat-card>
   </div>
+
+  <app-barter-details *ngIf="selectedBarter" [barter]="selectedBarter" (close)="handleClose()" (barterUpdated)="loadBarters()"></app-barter-details>
+
+
+
+
   

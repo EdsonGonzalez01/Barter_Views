@@ -16,7 +16,7 @@
     <input #fileInput formControlName="file" type="file" (change)="onFileSelected($event)">
   
     <!-- You can add more fields as needed -->
-    <button mat-raised-button color="primary" type="submit">Create Barter</button>
+    <button mat-raised-button color="primary" [disabled]="barterForm.invalid" type="submit">Create Barter</button>
   </form>
   
 </div>

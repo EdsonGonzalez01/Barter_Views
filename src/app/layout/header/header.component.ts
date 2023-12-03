@@ -46,6 +46,7 @@ export class HeaderComponent {
     
   }
 
+
   logout(){
     this.tokenService.remove();
     //console.log("Si se deslogueo");

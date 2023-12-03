@@ -1,0 +1,58 @@
+<div class="barter-details-modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 *ngIf="!isEditing">{{ barter.title }}</h2>
+            <button *ngIf="isBarterOwner(barter.offerer)" class="edit-btn" (click)="editBarter()">
+                <mat-icon *ngIf="!isEditing" >edit</mat-icon>
+            </button>
+            <h2 *ngIf="isEditing">Editing Barter</h2>
+            <button class="close-btn" (click)="closeDetails()">&times;</button>
+        </div>
+
+        <div class="modal-form" *ngIf="isEditing">
+            <!-- Formulario de edición -->
+            <form [formGroup]="editForm">
+                <mat-form-field appearance="fill">
+                    <mat-label>Title</mat-label>
+                    <input matInput formControlName="title">
+                </mat-form-field>
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Description</mat-label>
+                    <textarea matInput formControlName="description"></textarea>
+                </mat-form-field>
+
+                <!-- Mostrar imagen actual -->
+                <div class="current-image-container" *ngIf="barter.files && barter.files.length > 0">
+                    <img [src]="imageUrl" alt="Imagen actual" class="current-barter-image">
+                </div>
+
+                <!-- Selector de Archivo Mejorado -->
+                <div class="image-upload-container">
+                    <input type="file" #fileInput hidden (change)="onFileSelected($event)">
+                    <button mat-raised-button (click)="fileInput.click()">
+                        <mat-icon>upload</mat-icon> Upload Image
+                    </button>
+                </div>
+
+                <button mat-button (click)="onSubmit()" >Save</button>
+                <button mat-button (click)="cancelEdit()">Cancel</button>
+            </form>
+        </div>
+
+        <div class="modal-body" *ngIf="!isEditing">
+            <!-- Contenido existente del modal -->
+            <img *ngIf="barter.files && barter.files.length > 0"
+                 [src]="getImageUrl(barter.files[0].filename)"
+                 alt="{{ barter.title }}" class="barter-image">
+            <h3 style="font-weight: bold;">Description:</h3>
+            <p>{{ barter.description }}</p>
+            <h3 style="font-weight: bold;">Offerer:</h3>
+            <div class="offerer-details">
+                <img [src]="offererImgUrl" alt="Ofertante" class="offerer-img">
+                <p>{{ offerer.name }}</p>
+            </div>
+            <!-- Detalles adicionales aquí -->
+        </div>
+    </div>
+</div>
