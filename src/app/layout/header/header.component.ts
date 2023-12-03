@@ -33,8 +33,8 @@ export class HeaderComponent {
     })
 
     this.loginService.role.subscribe((role:string)=>{
+      console.log("Role", role);
       this.role = role;
-      console.log("Role", this.role);
     })
     
     this.socialAuth.authState.subscribe((user:SocialUser) => {
