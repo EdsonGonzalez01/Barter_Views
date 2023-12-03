@@ -24,7 +24,7 @@ export class SignupService {
       location: creds.location,
     }
     );
-    console.log(response)
+    //console.log(response)
     return response
   }
 }
