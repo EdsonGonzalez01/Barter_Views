@@ -15,7 +15,7 @@ export class UserService {
   getUser(): Observable<User> {
     const authToken = this.tokenService.get();
     const headers = new HttpHeaders().set('Authorization', `${authToken}`);
-    return this.httpClient.get<User>(environment.apiUrl + 'user/data', { headers });
+    return this.httpClient.get<User>(environment.apiUrl + 'user/data/roles', { headers });
   }
 
   getUserByID(id:string): Observable<User> {
@@ -56,4 +56,5 @@ export class UserService {
   getImageUrl(filename: string): string {
     return `${environment.apiUrl}assets/${filename}`;
   }
+  
 }

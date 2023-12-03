@@ -2,6 +2,11 @@
 $primary: blue;
 
 // login.component.scss
+img {
+  height: 50%;
+  width: 50%;
+  margin: auto;
+}
 mat-card {
     max-width: 400px;
     margin: 100px auto;
@@ -33,6 +38,10 @@ mat-card {
           margin-top: 24px;
         }
       }
+      
+      asl-google-signin-button{
+        margin: auto;
+      }   
   
       a {
         display: block;

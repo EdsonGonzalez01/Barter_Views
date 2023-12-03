@@ -38,6 +38,7 @@
           width: 100%; // Make the image take up 100% of the container
           height: 100%; // Make the image take up 100% of the container
           object-fit: cover; // Maintain aspect ratio and cover the container
+          max-width: 100%;
         }
       }
     }

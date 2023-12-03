@@ -21,4 +21,10 @@ export class LoginService {
     const url: string = environment.apiUrl + 'login/google';
     return this.httpClient.post<Token>(url, {idToken})
   }
+
+  loginAdmin(creds: {}): Observable<Token>{
+    const url: string = environment.apiUrl + 'login';
+    return this.httpClient.post<Token>(url, creds)
+  }
+
 }
