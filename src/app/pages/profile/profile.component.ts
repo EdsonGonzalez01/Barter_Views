@@ -17,8 +17,13 @@ export class ProfileComponent implements OnInit {
   editMode: boolean = false;
   imageUrl: string = "";
   fileSelected: HTMLInputElement | null; 
+  
 
-  constructor(private formBuilder: FormBuilder, private userService: UserService, private snackBar: MatSnackBar) {
+  constructor(
+    private formBuilder: FormBuilder, 
+    private userService: UserService,
+    private snackBar: MatSnackBar
+    ){
     this.userForm = this.formBuilder.group({
       name: [''], 
       location: ['']
@@ -29,10 +34,10 @@ export class ProfileComponent implements OnInit {
   
   ngOnInit(): void {
     this.userService.getUser().subscribe(user => {
-      console.log(user)
+      //console.log(user)
       this.user = user;
       this.userService.getProfilePic().subscribe(file => {
-        console.log("Length: ", file.length);
+        //console.log("Length: ", file.length);
         if(file.length == 0){
           this.imageUrl = `${environment.apiUrl}assets/user.png`
         }else{

@@ -14,8 +14,8 @@ import { TokenService } from 'src/app/shared/services/token.service';
 export class HeaderComponent {
 
   user: User = { name: '', email: '', lastName: '' };
-
   loginStatus:boolean = false
+  role: String = ""
 
   constructor(
     private tokenService: TokenService, 
@@ -24,7 +24,11 @@ export class HeaderComponent {
     private loginService: LoginService
   ){
 
+    //console.log("En el constructor");
+    
+
     this.tokenService.loginStatus.subscribe((status:boolean)=>{
+      //console.log("Status", status);
       this.loginStatus = status;
     })
 
@@ -45,10 +49,9 @@ export class HeaderComponent {
     })
     
   }
-
-
   logout(){
     this.tokenService.remove();
+    this.tokenService.removeRole();
     //console.log("Si se deslogueo");
     this.loginStatus = false;
     this.routerService.navigate(['login']);

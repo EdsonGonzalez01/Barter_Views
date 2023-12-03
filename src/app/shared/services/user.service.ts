@@ -56,4 +56,7 @@ export class UserService {
   getImageUrl(filename: string): string {
     return `${environment.apiUrl}assets/${filename}`;
   }
+
+
+
 }
