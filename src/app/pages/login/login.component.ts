@@ -69,7 +69,7 @@ export class LoginComponent implements OnInit {
         this.router.navigate([''])
       },
       error: (err) => {
-        alert('No se pudo iniciar sesion')
+        alert('An error ocurred, please try again later')
         //console.log(err);
       }
     })

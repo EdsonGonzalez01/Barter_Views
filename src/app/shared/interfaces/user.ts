@@ -1,3 +1,5 @@
+import { File } from "./file";
+
 export interface User {
     _id?: string;
     name: string;
@@ -6,6 +8,6 @@ export interface User {
     password?: string;
     location?: string;
     status?: string;
-    imageUrl?: string;
+    files?: File[];
     roles?: [],
 }

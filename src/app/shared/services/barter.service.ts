@@ -11,20 +11,20 @@ import { TokenService } from './token.service';
   providedIn: 'root',
 })
 export class BarterService {
-  private apiUrl = 'http://localhost:3000/barter';
 
   constructor(private http: HttpClient, private tokenService: TokenService) {}
 
   createBarter(barterData: Barter): Observable<Barter> {
-    return this.http.post<Barter>(this.apiUrl, barterData);
+    return this.http.post<Barter>(`${environment.apiUrl}barter`, barterData);
   }
 
   upload(id: string, input: HTMLInputElement): Observable<File> {
     const formData = new FormData();
     formData.append('file', input.files![0]);
-  
     const url = `${environment.apiUrl}barter/${id}/upload`;
-    return this.http.post<File>(url, formData);
+    const authToken = this.tokenService.get();
+    const headers = new HttpHeaders().set('Authorization', `${authToken}`);
+    return this.http.post<File>(url, formData, {headers});
   }
 
   getBarters(): Observable<Barter[]>{
@@ -46,5 +46,20 @@ export class BarterService {
 
   getImageUrl(filename: string): string {
     return `${environment.apiUrl}assets/${filename}`;
+  }
+
+  updateBarter(barterId: String, barterData: {}){
+    const authToken = this.tokenService.get();
+    const headers = new HttpHeaders().set('Authorization', `${authToken}`);
+    return this.http.put<Barter>(`${environment.apiUrl}barter/update/${barterId}`, barterData, { headers });
+  }
+
+  updateBarterPic(barterId: String, input: HTMLInputElement) {
+    const authToken = this.tokenService.get();
+    const headers = new HttpHeaders().set('Authorization', `${authToken}`);
+    const formData = new FormData();
+    formData.append('file', input.files![0]);
+    const url = `${environment.apiUrl}barter/upload/update/${barterId}`;
+    return this.http.put<Barter>(url, formData, { headers });
   }
 }
