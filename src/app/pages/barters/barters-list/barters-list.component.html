@@ -28,7 +28,9 @@
     </mat-card>
   </div>
 
-  <app-barter-details *ngIf="selectedBarter" [barter]="selectedBarter" (close)="handleClose()"></app-barter-details>
+  <app-barter-details *ngIf="selectedBarter" [barter]="selectedBarter" (close)="handleClose()" (barterUpdated)="loadBarters()"></app-barter-details>
+
+
 
 
   

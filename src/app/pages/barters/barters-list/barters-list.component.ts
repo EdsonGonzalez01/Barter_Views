@@ -16,7 +16,15 @@ export class BartersListComponent implements OnInit {
   constructor(private barterService: BarterService) { }
 
   ngOnInit() {
-    this.showAllBarters();
+    this.loadBarters();
+  }
+
+  loadBarters() {
+    if (this.allBartersShown) {
+      this.showAllBarters();
+    } else {
+      this.showMyBarters();
+    }
   }
 
   showDetails(barter: Barter) {
@@ -25,40 +33,44 @@ export class BartersListComponent implements OnInit {
 
   handleClose() {
     this.selectedBarter = null;
+    this.loadBarters(); // Reload barters after closing the details modal
   }
-  
-  showAllBarters(){
+
+  reloadBarters(success: boolean) {
+    if (success) {
+      this.loadBarters(); // Reload barters on successful update
+    }
+  }
+
+  showAllBarters() {
     this.allBartersShown = true;
     this.barterService.getBarters().subscribe((barters: Barter[]) => {
-      console.log("Barters: ", barters);
-      
-      // Fetch files for each barter
-      this.items = barters.map(barter => {
-        this.barterService.getFiles(barter._id).subscribe(files => {
-          // Update the barter with the fetched files
-          console.log("files: ", files);
-          barter.files = files;
-        });
-        return barter;
+      this.loadBartersData(barters);
+    });
+  }
+
+  showMyBarters() {
+    this.allBartersShown = false;
+    this.barterService.getMyBarters().subscribe((barters: Barter[]) => {
+      this.loadBartersData(barters);
+    });
+  }
+
+  private loadBartersData(barters: Barter[]) {
+    this.items = [];
+
+    // Fetch files for each barter
+    barters.forEach(barter => {
+      this.barterService.getFiles(barter._id).subscribe(files => {
+        // Update the barter with the fetched files
+        barter.files = files;
       });
+      this.items.push(barter);
     });
   }
 
   // Helper function to get the image URL for a file
   getImageUrl(filename: string): string {
     return this.barterService.getImageUrl(filename);
-  }
-
-  showMyBarters(){
-    this.allBartersShown = false
-    this.barterService.getMyBarters().subscribe((barters: Barter[])=> {
-      this.items = barters.map(barter => {
-        this.barterService.getFiles(barter._id).subscribe(files => {
-          // Update the barter with the fetched files
-          barter.files = files;
-        });
-        return barter;
-      });
-    })
   }
 }
