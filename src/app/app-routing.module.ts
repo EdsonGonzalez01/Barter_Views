@@ -18,6 +18,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent, canActivate: [unauthGuard]},
   { path: 'barters', component: BartersComponent,canActivate: [authGuard], children: [
     { path: '', component: BartersListComponent }, 
+    {path: 'chat', component: ChatComponent, canActivate: [authGuard]},
     { path: 'create', component: BartersCreateComponent }, 
   ] },
   { path: 'users', component: UsersComponent, canActivate: [authGuard], children: [
