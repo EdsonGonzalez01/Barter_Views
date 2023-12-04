@@ -1,0 +1,25 @@
+<!--There are no offers-->
+
+
+<div class="barter-details-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Please accept an offer</h2>
+        <button class="close-btn" (click)="closeDetails()">&times;</button>
+      </div>
+  
+      <div class="modal-body">
+        <!-- Use Angular Material Selection List to display barters -->
+        <mat-selection-list [(ngModel)]="selectedBarters" [multiple]="false">
+          <mat-list-option *ngFor="let barter of items" [value]="barter">
+            {{ barter.title }}
+          </mat-list-option>
+        </mat-selection-list>
+      </div>
+  
+      <div class="modal-footer">
+        <button mat-raised-button color="primary" (click)="selectOffer()">Select Offer</button>
+      </div>
+    </div>
+  </div>
+  

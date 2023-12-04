@@ -25,6 +25,8 @@ import { UsersComponent } from './pages/users/users.component';
 import { UsersListComponent } from './pages/users/users-list/users-list.component';
 import { ChatComponent } from './chat/chat.component';
 import { FooterComponent } from './layout/footer/footer.component';
+import { ShowInterestComponent } from './pages/barters/show-interest/show-interest.component';
+import { ShowOffersComponent } from './pages/barters/show-offers/show-offers.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +45,8 @@ import { FooterComponent } from './layout/footer/footer.component';
     UsersComponent,
     UsersListComponent,
     FooterComponent,
+    ShowInterestComponent,
+    ShowOffersComponent,
   ],
   imports: [
     BrowserModule,

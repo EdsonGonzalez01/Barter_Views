@@ -11,6 +11,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { BartersCreateComponent } from './pages/barters/barters-create/barters-create.component';
 import { UsersComponent } from './pages/users/users.component';
 import { UsersListComponent } from './pages/users/users-list/users-list.component';
+import { ShowInterestComponent } from './pages/barters/show-interest/show-interest.component';
 import { ChatComponent } from './chat/chat.component';
 
 const routes: Routes = [

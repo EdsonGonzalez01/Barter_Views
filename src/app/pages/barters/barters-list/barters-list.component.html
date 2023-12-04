@@ -2,6 +2,7 @@
   <button mat-raised-button color="primary" routerLink="create">New Barter</button>
   <button mat-raised-button color="primary" *ngIf="!allBartersShown" (click)="showAllBarters()">All barters</button>
   <button mat-raised-button color="primary" *ngIf="allBartersShown" (click)="showMyBarters()">My barters</button>
+  <button mat-raised-button color="primary" (click)="showBarteredBarters()">My Transactions</button>
 </div>
 
 <div *ngIf="items.length === 0" class="no-barters-message">
@@ -19,11 +20,14 @@
       </div>
       <mat-card-content>
         <p>{{ item.description }}</p>
+        <p *ngIf="item.offerer == loggedUser._id">Offers: {{ offersCountMap[item._id] || 0 }}</p>
+
       </mat-card-content>
       <!-- You can add additional actions or customize the content as needed -->
       <mat-card-actions>
         <button mat-button (click)="showDetails(item)">Details</button>
-        <button mat-button>Show Interest</button>
+        <button mat-button (click)="showInterest(item)" *ngIf="item.offerer != loggedUser._id">Show Interest</button>
+        <button mat-button (click)="showOffers(item)" *ngIf="item.offerer == loggedUser._id">Show Offers</button>
         <button mat-icon-button color="basic" routerLink="chat">
           <mat-icon aria-label="message">message</mat-icon>
         </button>
@@ -33,6 +37,9 @@
   </div>
 
   <app-barter-details *ngIf="selectedBarter" [barter]="selectedBarter" (close)="handleClose()" (barterUpdated)="loadBarters()"></app-barter-details>
+  <app-show-interest *ngIf="selectedInterest" [desiredBarter]="selectedInterest" (close)="handleCloseInterest()"></app-show-interest>
+  <app-show-offers *ngIf="selectedOffers" [offeredBarter]="selectedOffers" (close)="handleCloseOffers()"></app-show-offers>
+
 
 
 
