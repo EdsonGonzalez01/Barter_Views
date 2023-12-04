@@ -91,6 +91,7 @@ export class ShowOffersComponent {
             });
   
             this.barterUpdated.emit(true);
+            this.closeDetails();
           },
           error: (error) => console.error('Error al actualizar la transacción', error)
         });
