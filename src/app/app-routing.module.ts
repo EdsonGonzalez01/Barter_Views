@@ -8,12 +8,14 @@ import { unauthGuard } from './shared/guards/unauth.guard';
 import { BartersComponent } from './pages/barters/barters.component';
 import { BartersListComponent } from './pages/barters/barters-list/barters-list.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { ChatComponent } from './chat/chat.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [authGuard]},
   { path: 'login', component: LoginComponent, canActivate: [unauthGuard]},
   { path: 'barters', component: BartersComponent,canActivate: [authGuard], children: [
     { path: '', component: BartersListComponent }, 
+    {path: 'chat', component: ChatComponent, canActivate: [authGuard]},
   ] },
   { path: 'profile', component: ProfileComponent, canActivate: [authGuard]},
   { path: 'signup', component: SignupComponent, canActivate: [unauthGuard]},

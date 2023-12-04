@@ -32,7 +32,7 @@ import { ChatComponent } from './chat/chat.component';
     BartersComponent,
     BartersListComponent,
     ProfileComponent,
-    ChatComponent
+    ChatComponent,
   ],
   imports: [
     BrowserModule,
