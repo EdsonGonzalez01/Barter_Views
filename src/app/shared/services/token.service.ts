@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
-
 import { BehaviorSubject, Observable } from 'rxjs';
+import { LoginService } from './login.service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +11,7 @@ export class TokenService {
 
   loginStatus: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
-  constructor() { 
+  constructor(private httpClient: HttpClient) { 
     this.loginStatus.next(this.isLoggedIn());
   }
 
@@ -30,4 +32,5 @@ export class TokenService {
     localStorage.removeItem('token');
     this.loginStatus.next(false);
   }
+
 }

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { TokenService } from 'src/app/shared/services/token.service';
@@ -21,7 +20,6 @@ export class LoginComponent implements OnInit {
   hide = true;
   constructor(
     formBuilder: FormBuilder, 
-    private httpClient: HttpClient, 
     private tokenService: TokenService, 
     private loginService: LoginService,
     private router: Router,
@@ -59,20 +57,28 @@ export class LoginComponent implements OnInit {
 
 
   onSubmit() {
-    console.log(this.form.controls);
     const url: string = `${environment.apiUrl}login`;
-    console.log(url);
     this.loginService.login({
       email: this.form.controls['email'].value,
       password: this.form.controls['password'].value
     }).subscribe({
       next: (response: Token) => {
         this.tokenService.save(response.token);
+        this.loginService.getAdmin(response.token).subscribe({
+          next: (response) => {
+            if(response.status){
+              this.loginService.saveRole('admin')
+            }
+          },
+          error: (err) => {
+            console.log(err);
+          }
+        });
         this.router.navigate([''])
       },
       error: (err) => {
-        alert('No se pudo iniciar sesion')
-        console.log(err);
+        alert('An error ocurred, please try again later')
+        //console.log(err);
       }
     })
   }

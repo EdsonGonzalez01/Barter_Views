@@ -19,6 +19,10 @@ import { LoginStatusDirective } from './shared/directives/login-status.directive
 import { BartersComponent } from './pages/barters/barters.component';
 import { BartersListComponent } from './pages/barters/barters-list/barters-list.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { BartersCreateComponent } from './pages/barters/barters-create/barters-create.component';
+import { BarterDetailsComponent } from './pages/barters/barter-details/barter-details.component';
+import { UsersComponent } from './pages/users/users.component';
+import { UsersListComponent } from './pages/users/users-list/users-list.component';
 import { ChatComponent } from './chat/chat.component';
 
 @NgModule({
@@ -32,7 +36,11 @@ import { ChatComponent } from './chat/chat.component';
     BartersComponent,
     BartersListComponent,
     ProfileComponent,
-    ChatComponent
+    ChatComponent,
+    BartersCreateComponent,
+    BarterDetailsComponent,
+    UsersComponent,
+    UsersListComponent,
   ],
   imports: [
     BrowserModule,

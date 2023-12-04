@@ -1,16 +1,36 @@
-<div class="card-matrix">
-    <mat-card *ngFor="let item of items">
-        <mat-card-header>
-        <mat-card-title>Title</mat-card-title>
-        <mat-card-subtitle>Subtitle</mat-card-subtitle>
-        </mat-card-header>
-        <img mat-card-image [src]="imageUrl" alt="image">
-        <mat-card-content>
-        <p>Your card content here...</p>
-        </mat-card-content>
-        <mat-card-actions>
-        <button mat-button>Action 1</button>
-        <button mat-button>Action 2</button>
-        </mat-card-actions>
-    </mat-card>
+<div class="buttons-container">
+  <button mat-raised-button color="primary" routerLink="create">New Barter</button>
+  <button mat-raised-button color="primary" *ngIf="!allBartersShown" (click)="showAllBarters()">All barters</button>
+  <button mat-raised-button color="primary" *ngIf="allBartersShown" (click)="showMyBarters()">My barters</button>
 </div>
+
+<div *ngIf="items.length === 0" class="no-barters-message">
+  There are no barters to display
+</div>
+
+<div class="card-matrix">
+    <mat-card *ngFor="let item of items" class="mat-card">
+      <mat-card-header>
+        <mat-card-title>{{ item.title }}</mat-card-title>
+      </mat-card-header>
+      <!-- Display the first image if available -->
+      <div class="image-container">
+        <img *ngIf="item.files && item.files.length > 0" mat-card-image [src]="getImageUrl(item.files[0].filename)" alt="image" class="mat-card-image">
+      </div>
+      <mat-card-content>
+        <p>{{ item.description }}</p>
+      </mat-card-content>
+      <!-- You can add additional actions or customize the content as needed -->
+      <mat-card-actions>
+        <button mat-button (click)="showDetails(item)">More Details</button>
+        <button mat-button>Show Interest</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+
+  <app-barter-details *ngIf="selectedBarter" [barter]="selectedBarter" (close)="handleClose()" (barterUpdated)="loadBarters()"></app-barter-details>
+
+
+
+
+  

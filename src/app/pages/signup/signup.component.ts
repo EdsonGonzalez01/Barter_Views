@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { environment } from 'src/environments/environment';
 import { SignupService } from 'src/app/shared/services/signup.service';
 import { Router } from '@angular/router';
-import { LoginService } from 'src/app/shared/services/login.service';
+
 import { User } from 'src/app/shared/interfaces/user';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-signup',
@@ -17,10 +17,9 @@ export class SignupComponent {
 
   constructor(
     formBuilder: FormBuilder, 
-    private httpClient: HttpClient,
     private signUpService:SignupService,
-    private loginService:LoginService,
-    private router: Router
+    private router: Router,
+    private snackBar: MatSnackBar, 
     ) {
     this.form = formBuilder.group({
       name: ['', [Validators.required, Validators.minLength(3)]],
@@ -70,21 +69,27 @@ export class SignupComponent {
 
   }
 
+  showSnack(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 3000, // You can customize the duration in milliseconds
+    });
+  }
+
   signup() {
     const url: string = `${environment.apiUrl}user`;
-  
     this.signUpService.signUp({
       name: this.form.controls['name'].value,
       lastName: this.form.controls['lastName'].value,
       email: this.form.controls['email'].value,
       password: this.form.controls['password'].value,
-      location: this.form.controls['confirm'].value,
+      roles: ['user']
     }).subscribe({
       next: (response: User) => {
         this.router.navigate(['login'], { queryParams: { success: true } });
       },
       error: (err) => {
-        console.log(err);
+        this.showSnack("This email already exists", "Error");
+        console.log("An error ocurred: ", err);
       }
     });
   }

@@ -16,13 +16,16 @@ export class SignupService {
 
   signUp(creds: User): Observable<User>{
     const create_url: string = `${environment.apiUrl}user`;
-    return this.httpClient.post<User>(create_url, {
+    const response = this.httpClient.post<User>(create_url, {
       name: creds.name,
       lastname: creds.lastName,
       email: creds.email,
       password: creds.password,
       location: creds.location,
+      roles: creds.roles
     }
     );
+    //console.log(response)
+    return response
   }
 }

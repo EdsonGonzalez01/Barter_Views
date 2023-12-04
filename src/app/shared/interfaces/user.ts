@@ -1,10 +1,13 @@
+import { File } from "./file";
+
 export interface User {
-    id?: string;
+    _id?: string;
     name: string;
     lastName:string,
     email: string;
     password?: string;
     location?: string;
     status?: string;
-    roles?: [],
+    files?: File[];
+    roles: string[],
 }

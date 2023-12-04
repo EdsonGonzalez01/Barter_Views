@@ -1,1 +1,39 @@
-<p>profile works!</p>
+<mat-card [formGroup]="userForm">
+  <mat-card-header>
+    <mat-card-title>
+      <ng-container *ngIf="!editMode">{{ userForm.get('name')?.value }}</ng-container>
+      <mat-form-field *ngIf="editMode" appearance="fill">
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name">
+      </mat-form-field>
+    </mat-card-title>
+    <mat-card-subtitle>{{ user.email }}</mat-card-subtitle> <!-- Email remains unchanged -->
+    <button mat-icon-button (click)="toggleEditMode()" aria-label="Edit user">
+      <mat-icon>{{ editMode ? 'check' : 'edit' }}</mat-icon>
+    </button>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="image-container">
+      <!-- Imagen que actúa como botón para el selector de archivos -->
+      <img [src]="imageUrl" (click)="imageInput.click()">
+      
+      <!-- Input de tipo file, oculto visualmente -->
+      <input type="file" (change)="onFileSelected($event)" hidden #imageInput>
+
+      <!-- Opcional: un botón sobre la imagen para hacer más claro que es editable -->
+      <button *ngIf="editMode" mat-icon-button (click)="imageInput.click()" class="edit-image-button">
+        <mat-icon>edit</mat-icon>
+      </button>
+    </div>
+    <div *ngIf="!editMode">
+      <p><strong>Location:</strong> {{ userForm.get('location')?.value }}</p>
+    </div>
+    <div *ngIf="editMode">
+      <mat-form-field appearance="fill">
+        <mat-label>Location</mat-label>
+        <input matInput formControlName="location">
+      </mat-form-field>
+    </div>
+    <p><strong>Status:</strong> {{ user.status }}</p>
+  </mat-card-content>
+</mat-card>
