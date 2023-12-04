@@ -1,0 +1,63 @@
+.users-list {
+    display: flex;
+    flex-direction: column;
+  
+    .user-item {
+      margin-bottom: 10px;
+      border-radius: 5px;
+      position: relative; /* Para posicionar el botón Make Admin */
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      border: 1px solid #e0e0e0;
+      padding: 15px;
+      background-color: white;
+    }
+  
+    .user-info p {
+      font-size: 16px;
+      color: #333;
+    }
+  
+    .make-admin-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background-color: #4CAF50; /* Color verde */
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 10px;
+      cursor: pointer;
+    }
+
+    .remove-admin-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background-color: red;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 10px;
+        cursor: pointer;
+      }
+
+    .make-admin-btn:hover {
+        background-color: rgb(150, 10, 10); 
+    }
+  
+    .make-admin-btn:hover {
+      background-color: #45a049;
+    }
+  
+    .no-users-message {
+      text-align: center;
+      margin: 20px;
+      font-size: 18px;
+      color: #888;
+      background-color: #f8f8f8;
+      padding: 20px;
+      border-radius: 5px;
+      font-style: italic;
+    }
+  }
+  

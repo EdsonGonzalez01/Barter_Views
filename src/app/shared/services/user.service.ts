@@ -12,6 +12,13 @@ import { TokenService } from './token.service';
 export class UserService {
   constructor(private httpClient: HttpClient, private tokenService: TokenService) {}
 
+
+  getUsers(): Observable<User[]> {
+    const authToken = this.tokenService.get();
+    const headers = new HttpHeaders().set('Authorization', `${authToken}`);
+    return this.httpClient.get<User[]>(environment.apiUrl + 'user', { headers });
+  }
+
   getUser(): Observable<User> {
     const authToken = this.tokenService.get();
     const headers = new HttpHeaders().set('Authorization', `${authToken}`);
@@ -56,4 +63,7 @@ export class UserService {
   getImageUrl(filename: string): string {
     return `${environment.apiUrl}assets/${filename}`;
   }
+
+
+
 }

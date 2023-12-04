@@ -16,5 +16,6 @@
     <span class="spacer"></span>
     <a *ngIf="!loginStatus" mat-button routerLink="login">Login</a>
     <a *ngIf="!loginStatus" mat-button routerLink="signup">Register</a>
+    <a *ngIf="loginStatus && role=='admin'" mat-button routerLink="users">Users</a>
     <a *ngIf="loginStatus" mat-button (click) = "logout()">Log Out</a>
 </mat-toolbar>

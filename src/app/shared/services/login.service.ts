@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Token } from '../interfaces/token';
 import { TokenService } from './token.service';
@@ -10,10 +10,13 @@ import { TokenService } from './token.service';
 })
 export class LoginService {
 
+  role: BehaviorSubject<string> = new BehaviorSubject<string>("");
+
   constructor(
     private httpClient: HttpClient,
     private tokenService: TokenService
   ) { 
+    this.role.next(this.getRole());
   }
 
   login(creds: {}): Observable<Token>{
@@ -25,4 +28,5 @@ export class LoginService {
     const url: string = environment.apiUrl + 'login/google';
     return this.httpClient.post<Token>(url, {idToken})
   }
+
 }

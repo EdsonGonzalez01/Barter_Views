@@ -21,7 +21,6 @@ export class LoginComponent implements OnInit {
   hide = true;
   constructor(
     formBuilder: FormBuilder, 
-    private httpClient: HttpClient, 
     private tokenService: TokenService, 
     private loginService: LoginService,
     private router: Router,
@@ -66,6 +65,16 @@ export class LoginComponent implements OnInit {
     }).subscribe({
       next: (response: Token) => {
         this.tokenService.save(response.token);
+        this.loginService.getAdmin(response.token).subscribe({
+          next: (response) => {
+            if(response.status){
+              this.loginService.saveRole('admin')
+            }
+          },
+          error: (err) => {
+            console.log(err);
+          }
+        });
         this.router.navigate([''])
       },
       error: (err) => {
