@@ -31,7 +31,6 @@ export class BarterDetailsComponent implements OnInit {
     private userService: UserService,
     private formBuilder: FormBuilder,
     private snackBar: MatSnackBar,
-    private router: Router,
   ) {
     this.editForm = this.formBuilder.group({
       title: [''],

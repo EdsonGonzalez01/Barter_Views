@@ -23,6 +23,8 @@ import { BartersCreateComponent } from './pages/barters/barters-create/barters-c
 import { BarterDetailsComponent } from './pages/barters/barter-details/barter-details.component';
 import { UsersComponent } from './pages/users/users.component';
 import { UsersListComponent } from './pages/users/users-list/users-list.component';
+import { ShowInterestComponent } from './pages/barters/show-interest/show-interest.component';
+import { ShowOffersComponent } from './pages/barters/show-offers/show-offers.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +41,8 @@ import { UsersListComponent } from './pages/users/users-list/users-list.componen
     BarterDetailsComponent,
     UsersComponent,
     UsersListComponent,
+    ShowInterestComponent,
+    ShowOffersComponent,
   ],
   imports: [
     BrowserModule,
