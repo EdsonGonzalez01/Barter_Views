@@ -11,7 +11,7 @@ import { UserService } from 'src/app/shared/services/user.service';
   templateUrl: './barters-list.component.html',
   styleUrls: ['./barters-list.component.scss']
 })
-export class BartersListComponent implements OnInit {
+export class BartersListComponent {
   imageUrl: string = 'https://www.prensalibre.com/wp-content/uploads/2018/12/afa2268e-f4dc-411b-b150-1d850801b2a4.jpg?quality=52&w=1200';
   items: Barter[] = [];
   allBartersShown: boolean = true;
@@ -26,9 +26,7 @@ export class BartersListComponent implements OnInit {
     private barterService: BarterService, 
     private userService:UserService, 
     private transactionService: TransactionService) 
-  { }
-
-  ngOnInit() {
+  { 
     this.loadBarters();
     this.userService.getUser().subscribe({
       next: (user: User) =>{
