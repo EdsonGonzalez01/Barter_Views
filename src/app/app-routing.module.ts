@@ -11,6 +11,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { BartersCreateComponent } from './pages/barters/barters-create/barters-create.component';
 import { UsersComponent } from './pages/users/users.component';
 import { UsersListComponent } from './pages/users/users-list/users-list.component';
+import { ChatComponent } from './chat/chat.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [authGuard]},
@@ -24,6 +25,7 @@ const routes: Routes = [
   ] },
   { path: 'profile', component: ProfileComponent, canActivate: [authGuard]},
   { path: 'signup', component: SignupComponent, canActivate: [unauthGuard]},
+  { path: 'chat', component: ChatComponent, canActivate: [authGuard]},
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
