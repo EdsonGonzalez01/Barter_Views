@@ -1,0 +1,74 @@
+.bg-dark {
+    background-color: rgb(7, 16, 31);
+}
+.py-5 {
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
+  }
+
+  .px-4 {
+    padding-right: 1.5rem !important;
+    padding-left: 1.5rem !important;
+  }
+  .px-lg-5 {
+    padding-right: 3rem !important;
+    padding-left: 3rem !important;
+  }
+  .my-5 {
+    margin-top: 3rem !important;
+    margin-bottom: 3rem !important;
+  }
+  .text-center {
+    text-align: center !important;
+  }
+  .text-white {
+    --bs-text-opacity: 1;
+    color: white;
+  }
+  .display-4 {
+    font-size: calc(1.475rem + 2.7vw);
+    font-weight: 300;
+    line-height: 1.2;
+  }
+  @media (min-width: 1200px) {
+    .display-4 {
+      font-size: 3.5rem;
+    }
+  }
+  .fw-bolder {
+    font-weight: bolder !important;
+  }
+  .lead {
+    font-size: 1.25rem;
+    font-weight: 300;
+  }
+  .fw-normal {
+    font-weight: 400 !important;
+  }
+  .text-white-50 {
+    --bs-text-opacity: 1;
+    color: rgba(255, 255, 255, 0.5) !important;
+  }
+  .mb-0 {
+    margin-bottom: 0 !important;
+  }
+
+.divPadre{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: white;
+    max-width: 75%;
+    margin: 40px auto 20px;
+    border-radius: 10px;
+}
+
+.divHijo{
+  max-width: 75%;
+  margin: auto 20px;
+}
+img{
+  max-width: 15%;
+}
+
+

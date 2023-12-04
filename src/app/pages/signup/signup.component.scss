@@ -1,12 +1,28 @@
 form {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: white;
     max-width: 500px;
     margin: 40px auto 20px;
+    border-radius: 10px;
+
+    button{
+        margin: 10px 5px;
+    }  
 
     mat-form-field {
-        width: 100%;
+        width: 80%;
     }
 
     div:last-child {
         text-align: right;
     }
 }
+
+img {
+    height: 40%;
+    width: 40%;
+    margin: auto;
+    display: flex;
+  }

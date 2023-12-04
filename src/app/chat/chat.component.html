@@ -1,5 +1,5 @@
 <h1>Chat</h1>
-<div class="container">
+<div class="container" [formGroup]="userForm">
     <div class="messages"> 
         <div class="message" *ngFor="let item of messages" [ngClass]="{'owned': item.owned}">
             <strong>{{item.username}}</strong>
@@ -15,5 +15,3 @@
         </button>
     </form>
 </div>
-
-  

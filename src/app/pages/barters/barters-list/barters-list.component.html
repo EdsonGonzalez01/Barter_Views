@@ -22,9 +22,11 @@
       </mat-card-content>
       <!-- You can add additional actions or customize the content as needed -->
       <mat-card-actions>
-        <button mat-button (click)="showDetails(item)">More Details</button>
+        <button mat-button (click)="showDetails(item)">Details</button>
         <button mat-button>Show Interest</button>
-        <a mat-button routerLink="chat">Barter</a>
+        <button mat-icon-button color="basic" routerLink="chat">
+          <mat-icon aria-label="message">message</mat-icon>
+        </button>
 
       </mat-card-actions>
     </mat-card>

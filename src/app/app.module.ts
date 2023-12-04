@@ -24,6 +24,7 @@ import { BarterDetailsComponent } from './pages/barters/barter-details/barter-de
 import { UsersComponent } from './pages/users/users.component';
 import { UsersListComponent } from './pages/users/users-list/users-list.component';
 import { ChatComponent } from './chat/chat.component';
+import { FooterComponent } from './layout/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { ChatComponent } from './chat/chat.component';
     BarterDetailsComponent,
     UsersComponent,
     UsersListComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,

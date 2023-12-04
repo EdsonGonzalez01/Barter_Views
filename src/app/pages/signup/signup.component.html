@@ -1,5 +1,5 @@
 <form [formGroup]="form" (submit)="signup()">
-    <!-- - {{form.valid}} - -->
+    <img src="https://i.imgur.com/WvWAG0P.png" title="source: imgur.com" />
     <h1>Sign up</h1>
     <mat-form-field>
         <mat-label>Name</mat-label>
@@ -35,7 +35,7 @@
             I accept the terms and conditions
         </mat-checkbox>
     </div>
-    <div>
+    <div class="divButton">
         <button mat-flat-button color="primary" [disabled]="form.invalid">Sign up</button>
     </div>
 </form>
