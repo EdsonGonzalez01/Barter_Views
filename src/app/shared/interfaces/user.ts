@@ -9,5 +9,5 @@ export interface User {
     location?: string;
     status?: string;
     files?: File[];
-    roles?: [],
+    roles: string[],
 }

@@ -12,6 +12,13 @@ import { TokenService } from './token.service';
 export class UserService {
   constructor(private httpClient: HttpClient, private tokenService: TokenService) {}
 
+
+  getUsers(): Observable<User[]> {
+    const authToken = this.tokenService.get();
+    const headers = new HttpHeaders().set('Authorization', `${authToken}`);
+    return this.httpClient.get<User[]>(environment.apiUrl + 'user', { headers });
+  }
+
   getUser(): Observable<User> {
     const authToken = this.tokenService.get();
     const headers = new HttpHeaders().set('Authorization', `${authToken}`);
@@ -57,6 +64,20 @@ export class UserService {
     return `${environment.apiUrl}assets/${filename}`;
   }
 
+  makeAdmin(user: User){
+    const authToken = this.tokenService.get();
+    const formData = new FormData();
+    const headers = new HttpHeaders().set('Authorization', `${authToken}`);
+    const url = `${environment.apiUrl}user/makeAdmin/${user._id}`;
+    return this.httpClient.put<User>(url, formData, { headers });
+  }
 
+  removeAdmin(user: User){
+    const authToken = this.tokenService.get();
+    const formData = new FormData();
+    const headers = new HttpHeaders().set('Authorization', `${authToken}`);
+    const url = `${environment.apiUrl}user/removeAdmin/${user._id}`;
+    return this.httpClient.put<User>(url, formData, { headers });
+  }
 
 }

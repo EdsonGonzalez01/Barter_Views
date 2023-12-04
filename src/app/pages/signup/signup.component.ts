@@ -82,6 +82,7 @@ export class SignupComponent {
       lastName: this.form.controls['lastName'].value,
       email: this.form.controls['email'].value,
       password: this.form.controls['password'].value,
+      roles: ['user']
     }).subscribe({
       next: (response: User) => {
         this.router.navigate(['login'], { queryParams: { success: true } });

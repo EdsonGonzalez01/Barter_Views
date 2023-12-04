@@ -1,0 +1,24 @@
+<div class="users-list">
+    <ng-container *ngIf="users.length > 0; else noUsersTemplate">
+      <mat-card *ngFor="let user of users" class="user-item">
+        <mat-card-content class="user-info">
+          <h3>{{ user.name }} {{ user.lastName }}</h3>
+          <p><i class="email-icon"></i>{{ user.email }}</p>
+          <p *ngIf="user.roles && user.roles.length > 0"><i class="role-icon"></i>{{ user.roles.join(', ') }}</p>
+        </mat-card-content>
+        <!-- Botón Make Admin -->
+        <button *ngIf="!user.roles.includes('admin')" (click)="makeAdmin(user)" class="make-admin-btn">
+            Make Admin
+        </button>
+        <button *ngIf="user.roles.includes('admin')" (click)="removeAdmin(user)" class="remove-admin-btn">
+            Remove Admin
+        </button>
+      </mat-card>
+    </ng-container>
+    <ng-template #noUsersTemplate>
+      <div class="no-users-message">
+        <p>No users found</p>
+      </div>
+    </ng-template>
+  </div>
+  

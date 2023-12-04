@@ -22,6 +22,7 @@ export class SignupService {
       email: creds.email,
       password: creds.password,
       location: creds.location,
+      roles: creds.roles
     }
     );
     //console.log(response)
