@@ -1,0 +1,26 @@
+<div class="barter-details-modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Please select a barter to exchange</h2>
+            <button class="close-btn" (click)="closeDetails()">&times;</button>
+        </div>
+
+        <div class="modal-body">
+            <!-- Muestra un mensaje si no hay barters -->
+            <div *ngIf="items.length === 0" class="no-barters-message">
+                You do not have any barter to offer
+            </div>
+
+            <!-- Lista de barters si hay disponibles -->
+            <mat-selection-list *ngIf="items.length > 0" [(ngModel)]="selectedBarters" [multiple]="false">
+                <mat-list-option *ngFor="let barter of items" [value]="barter">
+                    {{ barter.title }}
+                </mat-list-option>
+            </mat-selection-list>
+        </div>
+
+        <div class="modal-footer">
+            <button mat-raised-button color="primary" (click)="selectBarter()" *ngIf="items.length > 0">Select Barter</button>
+        </div>
+    </div>
+</div>

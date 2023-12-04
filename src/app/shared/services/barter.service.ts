@@ -32,6 +32,14 @@ export class BarterService {
     return this.http.get<Barter[]>(url);
   }
 
+  getBarterById(barterId: string): Observable<Barter>{
+    const authToken = this.tokenService.get();
+    const headers = new HttpHeaders().set('Authorization', `${authToken}`);
+    const url = `${environment.apiUrl}barter/${barterId}`;
+    return this.http.get<Barter>(url, {headers});
+  }
+
+
   getMyBarters(): Observable<Barter[]>{
     const url = `${environment.apiUrl}barter/mybarters`;
     const authToken = this.tokenService.get();
