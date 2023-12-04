@@ -45,8 +45,6 @@ export class ChatComponent implements OnInit {
     console.log('Enviar el mensaje');
     const newMessage: Message = {
       message: this.message,
-    const newMessage: Message = {
-      message: this.message,
       username: this.nombre,
       owned: true
     };
@@ -59,4 +57,3 @@ export class ChatComponent implements OnInit {
   }
  
 }
- 
